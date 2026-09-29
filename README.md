@@ -110,5 +110,7 @@ everything works.
 - **Telephony features stay on** (`DIZI_TELEPHONY := true`). The dizi build drops them, because the Wi-Fi model
   otherwise crash-loops `com.qti.phone`.
 - **Carrier config and APNs:** they come from `vendor/lineage`. Some carriers may need entries.
-- **Not yet ported to Android 17 (cnb):** the dizi `cnb` branch exists, and ruan's layer is small, so a `cnb`
-  branch is the next step once ruan is verified on 16.
+- **Android 17 (cnb):** `device_xiaomi_ruan` and `vendor_xiaomi_ruan` have a `cnb` branch (64-bit only, on top
+  of dizi's `cnb`). Build it from an Evolution X `cnb` tree with `lunch lineage_ruan-cp2a-user`. The first signed
+  build, `EvolutionX-17.0-20260929-ruan-12.2-Unofficial`, is untested on hardware; see
+  [release/INSTALL-cnb.md](release/INSTALL-cnb.md). Local manifest: [manifest/ruan-cnb.xml](manifest/ruan-cnb.xml).
