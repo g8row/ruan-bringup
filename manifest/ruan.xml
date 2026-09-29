@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Local manifest for building Evolution X bka (Android 16) for the Redmi Pad Pro 5G / POCO Pad 5G (ruan).
+  ruan builds on the dizi (Wi-Fi model) device tree, so both trees are needed.
+  Put it in .repo/local_manifests/ after `repo init -u https://github.com/Evolution-X/manifest -b bka --git-lfs`,
+  then `repo sync`, apply device/xiaomi/dizi/patches, then:
+    source build/envsetup.sh && lunch lineage_ruan-bp4a-user && m evolution
+-->
+<manifest>
+  <remote name="dizi" fetch="https://github.com/g8row" />
+
+  <!-- ruan: the modem/GNSS/telephony layer, and its blobs (all from ruan OS3.0.303.0.WFSMIXM) -->
+  <project path="device/xiaomi/ruan" name="device_xiaomi_ruan" remote="dizi" revision="bka" />
+  <project path="vendor/xiaomi/ruan" name="vendor_xiaomi_ruan" remote="dizi" revision="bka" />
+
+  <!-- dizi: the shared device tree ruan inherits (BoardConfig.mk, device.mk), and the kernel artefacts -->
+  <project path="device/xiaomi/dizi" name="device_xiaomi_dizi" remote="dizi" revision="bka" />
+  <project path="device/xiaomi/dizi-kernel" name="device_xiaomi_dizi-kernel" remote="dizi" revision="bka" />
+  <project path="vendor/xiaomi/dizi" name="vendor_xiaomi_dizi" remote="dizi" revision="bka" />
+
+  <!-- Kernel headers for the QTI HALs, and shared dependencies (as for dizi) -->
+  <project path="kernel/xiaomi/sm7435" name="kernel_xiaomi_garnet" remote="evo-devices" revision="bka" clone-depth="1" />
+  <project path="kernel/xiaomi/sm7435-modules" name="kernel_xiaomi_garnet-modules" remote="evo-devices" revision="bka" clone-depth="1" />
+  <project path="hardware/xiaomi" name="Evolution-X-Devices/hardware_xiaomi" remote="github-non-los" revision="bka-no-dolby" />
+  <project path="hardware/dolby" name="Evolution-X-Devices/hardware_dolby" remote="github-non-los" revision="bka-aospa" />
+  <project path="packages/apps/GameBar" name="packages_apps_GameBar" remote="evo-devices" revision="bka" />
+</manifest>
